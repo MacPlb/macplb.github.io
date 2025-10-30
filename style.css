@@ -5,13 +5,13 @@
         }
 
         :root {
-            --primary-mint: #7df1a3;
+            --primary-mint: #6ee69a; /* More vibrant green */
             --dark-bunker: #0f1719;
             --bottle-green: #072a13;
             --de-york: #7bbd93;
             --killarney: #3c704d;
-            --light-mint-1: #a1f0bd;
-            --light-mint-2: #88f2b0;
+            --light-mint-1: #90f0b0;
+            --light-mint-2: #7be6a0;
             --text-light: #e8f5f0;
         }
 
@@ -192,7 +192,7 @@
             margin: 0 auto;
             padding: 5rem 2rem;
             position: relative;
-            z-index: 1;
+            z-index: 10; /* Increased z-index to be above bubbles */
         }
 
         section.visible {
@@ -243,15 +243,15 @@
                 opacity: 0;
             }
             5% {
-                opacity: 0.8;
+                opacity: 0.2; /* Reduced opacity */
                 transform: translateY(95vh) translateX(0) scale(1);
             }
             50% {
-                opacity: 0.6;
+                opacity: 0.1; /* Further reduced opacity */
                 transform: translateY(50vh) translateX(var(--drift)) scale(1.1);
             }
             95% {
-                opacity: 0.8;
+                opacity: 0.2; /* Reduced opacity */
             }
             100% {
                 transform: translateY(-10vh) translateX(var(--drift)) scale(0.8);
@@ -450,7 +450,7 @@
         }
 
         .skill-item {
-            background: rgba(15, 23, 25, 0.85);
+            background: rgba(15, 25, 24, 0.85);
             backdrop-filter: blur(10px);
             border: 1px solid var(--killarney);
             border-radius: 12px;
@@ -487,7 +487,7 @@
         }
 
         .project-card {
-            background: rgba(7, 42, 19, 0.85);
+            background: rgba(15, 25, 24, 0.85);
             backdrop-filter: blur(10px);
             border: 1px solid var(--killarney);
             border-radius: 12px;
@@ -553,7 +553,7 @@
         }
 
         .interest-card {
-            background: rgba(7, 42, 19, 0.85);
+            background: rgba(15, 25, 24, 0.85);
             backdrop-filter: blur(10px);
             border: 1px solid var(--killarney);
             border-radius: 12px;
@@ -605,7 +605,7 @@
         }
 
         .post-card {
-            background: rgba(7, 42, 19, 0.85);
+            background: rgba(15, 25, 24, 0.85);
             backdrop-filter: blur(10px);
             border: 1px solid var(--killarney);
             border-radius: 12px;
@@ -792,9 +792,8 @@
     margin: 0 auto;
 }
 
-.contact-card {
-    background: rgba(15, 23, 25, 0.85);
-    backdrop-filter: blur(10px);
+        .contact-card {
+            background: rgba(15, 25, 24, 0.85);    backdrop-filter: blur(10px);
     border: 1px solid var(--killarney);
     border-radius: 12px;
     padding: 2rem;
@@ -921,7 +920,7 @@
 
         .experience-timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 1000px; /* Increased max-width for two columns */
             margin: 0 auto;
             padding: 2rem 0;
         }
@@ -930,7 +929,8 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 10px;
+            left: 50%; /* Center the line */
+            transform: translateX(-50%); /* Adjust for line width */
             height: 100%;
             width: 3px;
             background: var(--killarney);
@@ -939,37 +939,132 @@
         .timeline-item {
             position: relative;
             margin-bottom: 3rem;
-            padding-left: 3rem;
+            display: flex;
+            justify-content: center; /* Center the dot and content around the line */
+            align-items: center; /* Vertically center the dot with the content */
+            min-height: 24px; /* Ensure item has height for dot */
         }
 
         .timeline-dot {
             position: absolute;
-            left: -5px;
-            top: 5px;
+            left: 50%; /* Center the dot on the line */
+            top: 50%; /* Vertically center the dot */
+            transform: translate(-50%, -50%); /* Adjust for dot width and height */
             width: 24px;
             height: 24px;
             border-radius: 50%;
             background: var(--primary-mint);
             border: 4px solid var(--dark-bunker);
             transition: transform 0.3s ease;
+            z-index: 2; /* Ensure dot is above the line */
         }
 
         .timeline-item:hover .timeline-dot {
-            transform: scale(1.2);
+            transform: translate(-50%, -50%) scale(1.2);
         }
 
         .timeline-content {
-            background: rgba(7, 42, 19, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(15, 25, 24, 0.85);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--killarney);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 1.5rem 2rem;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 45%; /* Max width for content blocks */
+            width: 100%; /* Ensure it takes available width */
+            text-align: left;
+        }
+
+        .timeline-item-right .timeline-content {
+            margin-left: calc(50% + 20px); /* Position to the right of the line + gap */
+        }
+
+        .timeline-item-left .timeline-content {
+            margin-right: calc(50% + 20px); /* Position to the left of the line + gap */
+            order: -1; /* Place content before the dot */
         }
 
         .timeline-item:hover .timeline-content {
             border-color: var(--primary-mint);
-            box-shadow: 0 8px 25px rgba(125, 241, 163, 0.1);
+            box-shadow: 0 8px 25px rgba(var(--primary-mint-rgb), 0.1);
+        }
+
+        .timeline-start-dot,
+        .timeline-end-dot {
+            position: relative;
+            height: 0; /* These are just markers, no content */
+            margin-bottom: 0;
+            padding-left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timeline-start-dot .timeline-dot {
+            top: -12px; /* Half the dot height to center on the very start */
+            transform: translateX(-50%); /* Only horizontal centering for start/end dots */
+        }
+
+        .timeline-end-dot .timeline-dot {
+            top: auto;
+            bottom: -12px; /* Half the dot height to center on the very end */
+            transform: translateX(-50%); /* Only horizontal centering for start/end dots */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .experience-timeline {
+                padding: 2rem 1rem; /* Adjust padding for smaller screens */
+            }
+
+            .experience-timeline::before {
+                left: 20px; /* Keep line to the left */
+                transform: translateX(0);
+            }
+
+            .timeline-item {
+                flex-direction: column; /* Stack dot and content vertically */
+                justify-content: flex-start; /* Align items to the start */
+                align-items: flex-start; /* Align items to the start */
+                padding-left: 40px; /* Space for the line and dot */
+                margin-bottom: 2rem; /* Adjust spacing between items */
+                position: relative; /* Needed for absolute positioning of dot */
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: 20px; /* Align with the timeline line */
+                top: 50%; /* Vertically center the dot */
+                transform: translate(-50%, -50%); /* Center horizontally on the line and vertically */
+                margin-bottom: 0;
+            }
+
+            .timeline-content {
+                max-width: none; /* Remove max-width */
+                width: 100%; /* Take full width */
+                margin-left: 0; /* Reset margin */
+                margin-right: 0; /* Reset margin */
+                padding: 1rem 1.5rem; /* Adjust padding */
+            }
+
+            .timeline-item-right .timeline-content,
+            .timeline-item-left .timeline-content {
+                margin-left: 0; /* Reset margin for both */
+                margin-right: 0; /* Reset margin for both */
+                order: 0; /* Ensure content order is natural */
+            }
+
+            .timeline-start-dot,
+            .timeline-end-dot {
+                padding-left: 40px;
+            }
+
+            .timeline-start-dot .timeline-dot,
+            .timeline-end-dot .timeline-dot {
+                left: 20px; /* Align with the line */
+                transform: translateX(-50%);
+            }
         }
 
         .timeline-header {

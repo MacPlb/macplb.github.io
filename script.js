@@ -222,8 +222,12 @@
         function renderExperience() {
             const timeline = document.getElementById('experienceTimeline');
             if (!timeline) return;
-            timeline.innerHTML = experience.map(item => `
-                <div class="timeline-item">
+            timeline.innerHTML = `
+                <div class="timeline-item timeline-start-dot">
+                    <div class="timeline-dot"></div>
+                </div>
+                ` + experience.map((item, index) => `
+                <div class="timeline-item ${index % 2 === 0 ? 'timeline-item-right' : 'timeline-item-left'}">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
@@ -237,7 +241,11 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `).join('') + `
+                <div class="timeline-item timeline-end-dot">
+                    <div class="timeline-dot"></div>
+                </div>
+            `;
         }
 
         function renderUnifiedSkills() {
