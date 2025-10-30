@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">MP</div>
+                <span>Maciej Pałubicki</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="posts.html">Posts</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>>
+        </nav>
+    </header>
+
+    <section id="post-detail">
+        <div class="post-detail-content" id="postDetailContent">
+            <!-- Post detail will be inserted here by JavaScript -->
+        </div>
+        <a href="posts.html" class="btn btn-secondary">Go Back</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Maciej Pałubicki. All rights reserved.</p>
+        <p>Built with passion using HTML, CSS &amp; JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id'));
+            const post = posts.find(p => p.id === postId);
+
+            if (post) {
+                const postDetailContent = document.getElementById('postDetailContent');
+                postDetailContent.innerHTML = `
+                    <div class="post-meta">
+                        <span class="post-date">${formatDate(post.date)}</span>
+                        <span class="post-category">${post.category}</span>
+                    </div>
+                    <h1 class="post-title">${post.title}</h1>
+                    <div class="post-full-content">
+                        ${post.content}
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
