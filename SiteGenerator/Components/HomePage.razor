@@ -1,21 +1,32 @@
-<Layout Title="Maciej Pałubicki · .NET Developer"
-        Description="Maciej Pałubicki, .NET backend developer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL."
+<Layout Title="Maciej Pałubicki · .NET Software Engineer"
+        Description="Maciej Pałubicki, .NET software engineer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL."
         IsHome="true">
 
     <section class="hero">
-        <p class="status">Currently learning Blazor</p>
-        <h1>Maciej Pałubicki</h1>
-        <p class="hero-role">.NET Backend Developer · Koszalin, Poland</p>
-        <p class="lead">
-            I build backend services in C# and .NET at i4B: ASP.NET Core APIs, gRPC and
-            message-driven microservices, SQL Server and PostgreSQL databases, and migrations
-            of legacy .NET Framework systems to modern .NET.
-        </p>
-        <ul class="hero-links">
-            <li><a class="primary" href="mailto:@Site.Email">Email me</a></li>
-            <li><a href="@Site.GitHub">GitHub</a></li>
-            <li><a href="@Site.LinkedIn">LinkedIn</a></li>
-        </ul>
+        <div class="hero-main">
+            <p class="status">Currently learning Blazor</p>
+            <h1>Maciej Pałubicki</h1>
+            <p class="hero-role">.NET Software Engineer</p>
+            <p class="lead">
+                I build backend services in C# and .NET at i4B: ASP.NET Core APIs, gRPC and
+                message-driven microservices, SQL Server and PostgreSQL databases, and migrations
+                of legacy .NET Framework systems to modern .NET.
+            </p>
+            <ul class="hero-links">
+                <li><a class="primary" href="mailto:@Site.Email">Email me</a></li>
+                <li><a href="@Site.GitHub">GitHub</a></li>
+                <li><a href="@Site.LinkedIn">LinkedIn</a></li>
+            </ul>
+        </div>
+        <aside class="hero-card" aria-label="Quick facts">
+            <img src="images/logo.svg" alt="" width="52" height="52">
+            <dl>
+                <div><dt>Current role</dt><dd>Software Developer at i4B</dd></div>
+                <div><dt>Based in</dt><dd>Koszalin, Poland</dd></div>
+                <div><dt>Experience</dt><dd>.NET since 2022</dd></div>
+                <div><dt>Focus</dt><dd>Backend, APIs, microservices</dd></div>
+            </dl>
+        </aside>
     </section>
 
     @if (Posts.Count > 0)
@@ -34,7 +45,13 @@
             {
                 <li class="job">
                     <div class="job-head">
-                        <h3>@job.Title <span>· @job.Company</span></h3>
+                        <h3>
+                            @job.Title <span class="company">· @job.Company</span>
+                            @if (job.Duration.EndsWith("present"))
+                            {
+                                <span class="badge">Current</span>
+                            }
+                        </h3>
                         <span class="meta">@job.Duration</span>
                     </div>
                     <p class="meta">@job.Location · @job.EmploymentType</p>
@@ -61,13 +78,15 @@
 
     <section id="skills">
         <h2>Skills</h2>
-        <dl class="details">
+        <div class="skill-grid">
             @foreach (var group in Skills)
             {
-                <dt>@group.Category</dt>
-                <dd>@string.Join(", ", group.Items)</dd>
+                <div class="skill-group">
+                    <h3>@group.Category</h3>
+                    <Tags Items="group.Items" />
+                </div>
             }
-        </dl>
+        </div>
     </section>
 
     <section id="setup" class="prose">
@@ -79,7 +98,7 @@
             the same system, and a rollback is a single command. One palette, defined in my
             kitty config, themes the terminal, GTK, Qt, Neovim and this website.
         </p>
-        <img class="screenshot" src="images/nixos-fastfetch.jpg" width="1200" height="483"
+        <img class="screenshot" src="images/nixos-fastfetch.jpg" width="1200" height="539"
              alt="kitty terminal running fastfetch on NixOS 26.05 with the niri compositor">
         <dl class="details">
             <dt>OS</dt>
@@ -109,22 +128,25 @@
             front ends without leaving the .NET stack.
         </p>
         <p>
-            Outside of work I play retro games (mostly Nintendo), collect mechanical
-            watches and make pixel art.
+            Outside of work I collect vinyl records and mechanical watches, play retro
+            games (mostly Nintendo) and make pixel art. Photos of my records and other
+            hobbies are in my <a href="collection.html">collection</a>.
         </p>
     </section>
 
-    <section id="contact" class="prose">
+    <section id="contact">
         <h2>Contact</h2>
-        <p>Email is the quickest way to reach me.</p>
-        <dl class="details contact">
-            <dt>Email</dt>
-            <dd><a href="mailto:@Site.Email">@Site.Email</a></dd>
-            <dt>GitHub</dt>
-            <dd><a href="@Site.GitHub">@Site.GitHub.Replace("https://", "")</a></dd>
-            <dt>LinkedIn</dt>
-            <dd><a href="@Site.LinkedIn">in/maciej-pałubicki</a></dd>
-        </dl>
+        <div class="contact-card">
+            <p>Email is the quickest way to reach me.</p>
+            <dl class="details contact">
+                <dt>Email</dt>
+                <dd><a href="mailto:@Site.Email">@Site.Email</a></dd>
+                <dt>GitHub</dt>
+                <dd><a href="@Site.GitHub">@Site.GitHub.Replace("https://", "")</a></dd>
+                <dt>LinkedIn</dt>
+                <dd><a href="@Site.LinkedIn">in/maciej-pałubicki</a></dd>
+            </dl>
+        </div>
     </section>
 </Layout>
 

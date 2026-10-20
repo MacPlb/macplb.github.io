@@ -1,0 +1,35 @@
+<Layout Title="Collection · Maciej Pałubicki" Description="Photos of my vinyl records, mechanical watches and other hobbies.">
+    <section>
+        <h1 class="page-title">Collection</h1>
+        <p class="page-intro">
+            What I collect and make outside of work: vinyl records, mechanical watches,
+            retro games and pixel art.
+        </p>
+        @if (Categories.Count == 0)
+        {
+            <p>Photos coming soon.</p>
+        }
+        @foreach (var category in Categories)
+        {
+            <section class="gallery-section">
+                <h2>@category.Title</h2>
+                <ul class="gallery">
+                    @foreach (var item in category.Items)
+                    {
+                        <li>
+                            <figure>
+                                <a href="@item.Url"><img src="@item.Url" alt="@item.Caption" loading="lazy"></a>
+                                <figcaption>@item.Caption</figcaption>
+                            </figure>
+                        </li>
+                    }
+                </ul>
+            </section>
+        }
+        <p class="back"><a href="index.html#about">&larr; Back to About</a></p>
+    </section>
+</Layout>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<CollectionCategory> Categories { get; set; } = [];
+}

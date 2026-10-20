@@ -8,7 +8,7 @@ using SiteGenerator;
 using SiteGenerator.Components;
 
 // Run from the repository root: dotnet run --project SiteGenerator
-const string PostsDir = "posts", StaticDir = "static", OutputDir = "_site";
+const string PostsDir = "posts", StaticDir = "static", CollectionDir = "collection", OutputDir = "_site";
 
 if (!Directory.Exists(PostsDir) || !Directory.Exists(StaticDir))
 {
@@ -32,9 +32,17 @@ catch (FormatException e)
     return 1;
 }
 
+var collection = Collection.Load(CollectionDir);
+
 if (Directory.Exists(OutputDir))
     Directory.Delete(OutputDir, recursive: true);
 CopyDirectory(StaticDir, OutputDir);
+foreach (var item in collection.SelectMany(category => category.Items))
+{
+    var target = Path.Combine(OutputDir, Uri.UnescapeDataString(item.Url));
+    Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+    File.Copy(item.SourcePath, target);
+}
 
 var services = new ServiceCollection()
     .AddLogging()
@@ -45,10 +53,11 @@ await using var renderer = new HtmlRenderer(services, services.GetRequiredServic
 
 await Render<HomePage>("index.html", new() { [nameof(HomePage.Posts)] = posts.Take(3).ToList() });
 await Render<PostsPage>("posts.html", new() { [nameof(PostsPage.Posts)] = posts });
+await Render<CollectionPage>("collection.html", new() { [nameof(CollectionPage.Categories)] = collection });
 foreach (var post in posts)
     await Render<PostPage>($"posts/{post.Slug}.html", new() { [nameof(PostPage.Post)] = post });
 
-Console.WriteLine($"Built {posts.Count} post(s) into {OutputDir}/");
+Console.WriteLine($"Built {posts.Count} post(s) and {collection.Sum(c => c.Items.Count)} collection photo(s) into {OutputDir}/");
 return 0;
 
 async Task Render<TComponent>(string path, Dictionary<string, object?> parameters) where TComponent : IComponent

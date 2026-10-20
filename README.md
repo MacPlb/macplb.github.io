@@ -5,6 +5,7 @@ to static HTML with Blazor's `HtmlRenderer`. Posts are Markdown files.
 
 ```
 posts/           Markdown posts (see posts/_example.md)
+collection/      hobby photos for collection.html, one folder per section
 static/          CSS and images, copied as-is
 SiteGenerator/   the generator; page markup lives in Components/
 ```
@@ -14,6 +15,12 @@ SiteGenerator/   the generator; page markup lives in Components/
 1. Copy `posts/_example.md` to `posts/my-post.md` and edit it.
 2. Build: `dotnet run --project SiteGenerator` (from the repository root).
 3. Open `_site/index.html` in a browser. The three newest posts show on the home page.
+
+## Add collection photos
+
+Drop images into a folder under `collection/`, e.g. `collection/1-vinyl/Pink Floyd - The Wall.jpg`.
+Each folder becomes a section ("1-vinyl" shows as "Vinyl"; the number only sets the order) and the
+file name becomes the caption. Photos are published as-is, so resize them to about 1600px first.
 
 Pushing to `master` runs the tests, builds the site and deploys `_site/` to
 GitHub Pages (`.github/workflows/pages.yml`).
