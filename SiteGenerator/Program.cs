@@ -34,6 +34,19 @@ catch (FormatException e)
 
 var collection = Collection.Load(CollectionDir);
 
+GitHubStats? github = null;
+try
+{
+    github = await GitHubStats.FetchAsync(Site.GitHubUser, Site.FeaturedRepos, Environment.GetEnvironmentVariable("GITHUB_TOKEN"));
+}
+catch (Exception e) when (e is HttpRequestException or TaskCanceledException or System.Text.Json.JsonException or InvalidOperationException)
+{
+    Console.Error.WriteLine($"warning: GitHub stats unavailable ({e.Message})");
+    // In CI, fail so the last good deploy stays up instead of a site whose README cards 404
+    if (Environment.GetEnvironmentVariable("CI") == "true")
+        return 1;
+}
+
 if (Directory.Exists(OutputDir))
     Directory.Delete(OutputDir, recursive: true);
 CopyDirectory(StaticDir, OutputDir);
@@ -51,11 +64,14 @@ var services = new ServiceCollection()
     .BuildServiceProvider();
 await using var renderer = new HtmlRenderer(services, services.GetRequiredService<ILoggerFactory>());
 
-await Render<HomePage>("index.html", new() { [nameof(HomePage.Posts)] = posts.Take(3).ToList() });
+await Render<HomePage>("index.html", new() { [nameof(HomePage.Posts)] = posts.Take(3).ToList(), [nameof(HomePage.GitHub)] = github });
 await Render<PostsPage>("posts.html", new() { [nameof(PostsPage.Posts)] = posts });
 await Render<CollectionPage>("collection.html", new() { [nameof(CollectionPage.Categories)] = collection });
 foreach (var post in posts)
     await Render<PostPage>($"posts/{post.Slug}.html", new() { [nameof(PostPage.Post)] = post });
+
+if (github is not null)
+    StatsCards.Write(github, Path.Combine(OutputDir, "github"));
 
 Console.WriteLine($"Built {posts.Count} post(s) and {collection.Sum(c => c.Items.Count)} collection photo(s) into {OutputDir}/");
 return 0;

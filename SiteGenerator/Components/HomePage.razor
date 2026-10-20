@@ -1,3 +1,5 @@
+@using System.Globalization
+
 <Layout Title="Maciej Pałubicki · .NET Software Engineer"
         Description="Maciej Pałubicki, .NET software engineer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL."
         IsHome="true">
@@ -76,6 +78,100 @@
         </div>
     </section>
 
+    @if (GitHub is not null)
+    {
+        <section id="github">
+            <h2>GitHub</h2>
+            <dl class="stat-tiles">
+                @foreach (var (value, label) in StatsCards.Tiles(GitHub))
+                {
+                    <div class="stat">
+                        <dt>@label</dt>
+                        <dd>@value</dd>
+                    </div>
+                }
+            </dl>
+
+            @if (GitHub.Contributions is { Count: > 0 } days)
+            {
+                var cells = ContributionCalendar.Cells(days);
+                <figure class="panel">
+                    <figcaption>@GitHub.TotalContributions.ToString("N0", CultureInfo.InvariantCulture) contributions in the last year</figcaption>
+                    <div class="heatmap-scroll">
+                        <div class="heatmap" role="img" aria-label="@($"Contribution calendar: {GitHub.TotalContributions} contributions in the last year, longest streak {GitHub.LongestStreak} days")">
+                            <div class="heatmap-months" aria-hidden="true">
+                                @foreach (var (week, month) in ContributionCalendar.MonthLabels(cells))
+                                {
+                                    <span style="grid-column: @(week + 1)">@month</span>
+                                }
+                            </div>
+                            <div class="heatmap-days" aria-hidden="true"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+                            <div class="heatmap-grid">
+                                @for (var i = 0; i < cells[0].Weekday; i++)
+                                {
+                                    <i></i>
+                                }
+                                @foreach (var cell in cells)
+                                {
+                                    <span data-level="@GitHub.Level(cell.Day.Count)" title="@Tip(cell.Day)"></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="heatmap-legend" aria-hidden="true">
+                        Less
+                        @for (var level = 0; level <= 4; level++)
+                        {
+                            <span data-level="@level"></span>
+                        }
+                        More
+                    </div>
+                    <details class="table-view">
+                        <summary>Show as table</summary>
+                        <table>
+                            <thead><tr><th scope="col">Week of</th><th scope="col">Contributions</th></tr></thead>
+                            <tbody>
+                                @foreach (var week in cells.GroupBy(c => c.Week).OrderByDescending(w => w.Key))
+                                {
+                                    <tr><td>@week.Min(c => c.Day.Date).ToString("d MMM yyyy", CultureInfo.InvariantCulture)</td><td>@week.Sum(c => c.Day.Count)</td></tr>
+                                }
+                            </tbody>
+                        </table>
+                    </details>
+                </figure>
+            }
+
+            <div class="github-grid">
+                <figure class="panel">
+                    <figcaption>Repositories by primary language</figcaption>
+                    <ul class="bar-chart">
+                        @foreach (var language in GitHub.Languages)
+                        {
+                            <li title="@($"{language.Language}: {language.Repositories} of {GitHub.Languages.Sum(l => l.Repositories)} repositories")">
+                                <span class="bar-label">@language.Language</span>
+                                <span class="bar-track">
+                                    <span class="bar" style="--share: @BarShare(language)"></span>
+                                    <span class="bar-value">@language.Repositories</span>
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </figure>
+                <div class="repo-cards">
+                    @foreach (var repo in GitHub.Featured)
+                    {
+                        <a class="card repo-card" href="@repo.Url">
+                            <h3>@repo.Name</h3>
+                            <p>@repo.Description</p>
+                            <span class="meta">@(repo.Language ?? "Repository")@(repo.Stars > 0 ? $" · ★ {repo.Stars}" : "")</span>
+                        </a>
+                    }
+                </div>
+            </div>
+            <p class="more"><a href="@Site.GitHub?tab=repositories">All repositories on GitHub &rarr;</a></p>
+        </section>
+    }
+
     <section id="skills">
         <h2>Skills</h2>
         <div class="skill-grid">
@@ -140,7 +236,7 @@
             <p>Email is the quickest way to reach me.</p>
             <dl class="details contact">
                 <dt>Email</dt>
-                <dd><a href="mailto:@Site.Email">@Site.Email</a></dd>
+                <dd><a href="mailto:@Site.Email">@Site.Email</a> <button type="button" class="copy" data-copy="@Site.Email" hidden>Copy</button></dd>
                 <dt>GitHub</dt>
                 <dd><a href="@Site.GitHub">@Site.GitHub.Replace("https://", "")</a></dd>
                 <dt>LinkedIn</dt>
@@ -153,6 +249,15 @@
 @code {
     /// <summary>The newest posts, already sorted.</summary>
     [Parameter, EditorRequired] public IReadOnlyList<Post> Posts { get; set; } = [];
+
+    /// <summary>Null when GitHub could not be reached; the section is then left out.</summary>
+    [Parameter] public GitHubStats? GitHub { get; set; }
+
+    static string Tip(ContributionDay day) =>
+        $"{(day.Count == 0 ? "No" : day.Count.ToString(CultureInfo.InvariantCulture))} contribution{(day.Count == 1 ? "" : "s")} on {day.Date.ToString("d MMM yyyy", CultureInfo.InvariantCulture)}";
+
+    string BarShare(LanguageCount language) =>
+        ((double)language.Repositories / GitHub!.Languages.Max(l => l.Repositories)).ToString("0.###", CultureInfo.InvariantCulture);
 
     record Job(string Title, string Company, string Location, string Duration, string EmploymentType, string Description, string[] Technologies);
     record Project(string Title, string Description, string[] Tech);

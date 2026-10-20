@@ -3,6 +3,8 @@ name: Deploy site
 on:
   push:
     branches: [master]
+  schedule:
+    - cron: "23 5 * * *" # daily, so the GitHub stats stay current
   workflow_dispatch:
 
 permissions:
@@ -27,6 +29,8 @@ jobs:
           dotnet-version: 10.0.x
       - run: dotnet test
       - run: dotnet run --project SiteGenerator
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

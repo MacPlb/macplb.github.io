@@ -23,4 +23,6 @@ Each folder becomes a section ("1-vinyl" shows as "Vinyl"; the number only sets 
 file name becomes the caption. Photos are published as-is, so resize them to about 1600px first.
 
 Pushing to `master` runs the tests, builds the site and deploys `_site/` to
-GitHub Pages (`.github/workflows/pages.yml`).
+GitHub Pages (`.github/workflows/pages.yml`). The workflow also runs daily to refresh
+the GitHub section and the SVG cards under `/github/` that the profile README embeds.
+Locally the contribution calendar needs a token: `GITHUB_TOKEN=$(gh auth token) dotnet run --project SiteGenerator`.
