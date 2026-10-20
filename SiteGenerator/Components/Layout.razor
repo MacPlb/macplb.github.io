@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@Title</title>
+    <meta name="description" content="@Description">
+    <link rel="icon" href="@(Root)images/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+    <link rel="stylesheet" href="@(Root)style.css">
+</head>
+<body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <nav>
+            <a href="@(IsHome ? "#" : Root + "index.html")" class="logo">
+                <img src="@(Root)images/logo.svg" alt="" width="28" height="28">@Site.Nickname
+            </a>
+            <ul class="nav-links">
+                <li><a href="@(Home)#experience">Experience</a></li>
+                <li><a href="@(Home)#projects">Projects</a></li>
+                <li><a href="@(Home)#skills">Skills</a></li>
+                <li><a href="@(Root)posts.html" aria-current="@(IsPosts ? "page" : null)">Posts</a></li>
+                <li><a href="@(Home)#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content">
+        @ChildContent
+    </main>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year Maciej Pałubicki</p>
+        <p>
+            Generated with .NET and Razor components ·
+            <a href="@(Site.GitHub)/macplb.github.io">source</a>
+        </p>
+    </footer>
+</body>
+</html>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = "";
+    [Parameter] public string Description { get; set; } = "Maciej Pałubicki, .NET backend developer from Koszalin, Poland.";
+    /// <summary>Relative path from the page to the site root: "" for root pages, "../" for posts.</summary>
+    [Parameter] public string Root { get; set; } = "";
+    [Parameter] public bool IsHome { get; set; }
+    [Parameter] public bool IsPosts { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    string Home => IsHome ? "" : Root + "index.html";
+}

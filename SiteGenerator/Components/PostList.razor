@@ -1,0 +1,21 @@
+<ul class="post-list">
+    @foreach (var post in Posts)
+    {
+        <li>
+            <time datetime="@post.IsoDate">@post.DisplayDate</time>
+            <div>
+                <a href="@(Root)posts/@(post.Slug).html">@post.Title</a>
+                @if (post.Summary != "")
+                {
+                    <p>@post.Summary</p>
+                }
+                <Tags Items="post.Tags" />
+            </div>
+        </li>
+    }
+</ul>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Post> Posts { get; set; } = [];
+    [Parameter] public string Root { get; set; } = "";
+}

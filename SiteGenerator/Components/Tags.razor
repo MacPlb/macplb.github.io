@@ -1,0 +1,13 @@
+@if (Items.Count > 0)
+{
+    <ul class="tags">
+        @foreach (var item in Items)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<string> Items { get; set; } = [];
+}

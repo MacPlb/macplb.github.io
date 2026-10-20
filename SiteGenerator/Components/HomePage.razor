@@ -1,0 +1,178 @@
+<Layout Title="Maciej Pałubicki · .NET Developer"
+        Description="Maciej Pałubicki, .NET backend developer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL."
+        IsHome="true">
+
+    <section class="hero">
+        <p class="status">Currently learning Blazor</p>
+        <h1>Maciej Pałubicki</h1>
+        <p class="hero-role">.NET Backend Developer · Koszalin, Poland</p>
+        <p class="lead">
+            I build backend services in C# and .NET at i4B: ASP.NET Core APIs, gRPC and
+            message-driven microservices, SQL Server and PostgreSQL databases, and migrations
+            of legacy .NET Framework systems to modern .NET.
+        </p>
+        <ul class="hero-links">
+            <li><a class="primary" href="mailto:@Site.Email">Email me</a></li>
+            <li><a href="@Site.GitHub">GitHub</a></li>
+            <li><a href="@Site.LinkedIn">LinkedIn</a></li>
+        </ul>
+    </section>
+
+    @if (Posts.Count > 0)
+    {
+        <section id="posts">
+            <h2>Latest posts</h2>
+            <PostList Posts="Posts" />
+            <p class="more"><a href="posts.html">All posts &rarr;</a></p>
+        </section>
+    }
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <ol class="timeline">
+            @foreach (var job in Experience)
+            {
+                <li class="job">
+                    <div class="job-head">
+                        <h3>@job.Title <span>· @job.Company</span></h3>
+                        <span class="meta">@job.Duration</span>
+                    </div>
+                    <p class="meta">@job.Location · @job.EmploymentType</p>
+                    <p>@job.Description</p>
+                    <Tags Items="job.Technologies" />
+                </li>
+            }
+        </ol>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="cards">
+            @foreach (var project in Projects)
+            {
+                <article class="card">
+                    <h3>@project.Title</h3>
+                    <p>@project.Description</p>
+                    <Tags Items="project.Tech" />
+                </article>
+            }
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <dl class="details">
+            @foreach (var group in Skills)
+            {
+                <dt>@group.Category</dt>
+                <dd>@string.Join(", ", group.Items)</dd>
+            }
+        </dl>
+    </section>
+
+    <section id="setup" class="prose">
+        <h2>Setup</h2>
+        <p>
+            I run NixOS, and my whole machine is declared in one flake: system packages,
+            Home Manager for user settings, the niri Wayland compositor with the Noctalia
+            shell, and every tool I work with. Inputs are pinned, so the same config builds
+            the same system, and a rollback is a single command. One palette, defined in my
+            kitty config, themes the terminal, GTK, Qt, Neovim and this website.
+        </p>
+        <img class="screenshot" src="images/nixos-fastfetch.jpg" width="1200" height="483"
+             alt="kitty terminal running fastfetch on NixOS 26.05 with the niri compositor">
+        <dl class="details">
+            <dt>OS</dt>
+            <dd>NixOS 26.05, flakes, Home Manager</dd>
+            <dt>Desktop</dt>
+            <dd>niri (Wayland), Noctalia shell</dd>
+            <dt>Terminal</dt>
+            <dd>kitty, JetBrains Mono, Starship, tmux</dd>
+            <dt>Editors</dt>
+            <dd>Rider, VS Code, Neovim</dd>
+            <dt>Tools</dt>
+            <dd>Docker, Terraform, Bruno, DBeaver</dd>
+        </dl>
+        <p class="more">
+            <a href="@(Site.GitHub)/nix-os-configuration">nix-os-configuration on GitHub &rarr;</a>
+        </p>
+    </section>
+
+    <section id="about" class="prose">
+        <h2>About</h2>
+        <p>
+            I started with .NET as a trainee at GlobalLogic in 2022 and joined i4B as an
+            intern in 2023, where I now work as a software developer. My work centers on
+            backend architecture in C# and .NET and on keeping older systems maintainable:
+            refactoring, paying down technical debt and moving .NET Framework code to
+            modern .NET with a cleaner structure. Right now I'm learning Blazor to build
+            front ends without leaving the .NET stack.
+        </p>
+        <p>
+            Outside of work I play retro games (mostly Nintendo), collect mechanical
+            watches and make pixel art.
+        </p>
+    </section>
+
+    <section id="contact" class="prose">
+        <h2>Contact</h2>
+        <p>Email is the quickest way to reach me.</p>
+        <dl class="details contact">
+            <dt>Email</dt>
+            <dd><a href="mailto:@Site.Email">@Site.Email</a></dd>
+            <dt>GitHub</dt>
+            <dd><a href="@Site.GitHub">@Site.GitHub.Replace("https://", "")</a></dd>
+            <dt>LinkedIn</dt>
+            <dd><a href="@Site.LinkedIn">in/maciej-pałubicki</a></dd>
+        </dl>
+    </section>
+</Layout>
+
+@code {
+    /// <summary>The newest posts, already sorted.</summary>
+    [Parameter, EditorRequired] public IReadOnlyList<Post> Posts { get; set; } = [];
+
+    record Job(string Title, string Company, string Location, string Duration, string EmploymentType, string Description, string[] Technologies);
+    record Project(string Title, string Description, string[] Tech);
+    record SkillGroup(string Category, string[] Items);
+
+    static readonly Job[] Experience =
+    [
+        new("Software Developer", "i4B", "Koszalin, Poland", "Oct 2023 – present", "Full-time · Hybrid",
+            "Building backend services in C# and .NET on top of SQL databases. Responsible for backend architecture, system integrations and ongoing maintenance.",
+            ["C#", ".NET", "SQL", "AWS", "Python", "TypeScript"]),
+        new("Intern", "i4B", "Koszalin, Poland", "Jul 2023 – Oct 2023", "Internship · On-site",
+            "Backend development and SQL database work in C# and .NET.",
+            ["C#", ".NET", "SQL"]),
+        new("Trainee .NET Developer", "GlobalLogic", "Koszalin, Poland", "Jul 2022 – Sep 2022", "Internship",
+            "Worked on backend projects in C# and .NET, using Git, SQL and Jira day to day.",
+            ["C#", ".NET", "SQL", "Git", "Jira"]),
+    ];
+
+    static readonly Project[] Projects =
+    [
+        new("gRPC API in .NET",
+            "gRPC service for communication between microservices, handling over 1 million requests per day.",
+            ["C#", ".NET", "gRPC", "PostgreSQL", "Docker"]),
+        new("AWS Glue ETL Pipeline",
+            "ETL pipeline that processes large datasets with AWS Glue jobs, with Lambda functions automating the transform and load steps.",
+            ["Python", "AWS Glue", "Lambda", "S3"]),
+        new("Django Blog",
+            "Blog application with user accounts, rich text editing and comments.",
+            ["Python", "Django", "PostgreSQL"]),
+    ];
+
+    static readonly SkillGroup[] Skills =
+    [
+        new("C# / .NET", ["C#", "ASP.NET Core (Web API, MVC, minimal APIs)", "gRPC", "SignalR", "LINQ", "async/await", "Dependency injection", "Background services", "Blazor (learning)"]),
+        new("Architecture", ["Clean Architecture", "DDD", "CQRS / MediatR", "Microservices", "SOLID", "Design patterns"]),
+        new("Messaging", ["MassTransit", "Message queues", "Event-driven integration"]),
+        new("Data access", ["Entity Framework Core", "Dapper", "SQL Server / T-SQL", "PostgreSQL", "Redis", "Query optimization", "Schema design"]),
+        new("Security", ["Authentication & authorization", "JWT", "OAuth 2.0 / OpenID Connect", "ASP.NET Core Identity"]),
+        new("Testing", ["TDD", "xUnit / NUnit", "Moq / NSubstitute", "Integration tests (WebApplicationFactory, Testcontainers)", "Architecture tests", "BenchmarkDotNet", "Profiling"]),
+        new("Observability", ["Serilog", "OpenTelemetry", "Health checks", "Polly"]),
+        new("Legacy systems", [".NET Framework to modern .NET migration", "Refactoring", "Technical debt reduction"]),
+        new("Cloud & DevOps", ["AWS (EC2, S3, Lambda, RDS, DynamoDB)", "Azure", "Docker", "Terraform", "CI/CD", "Git", "Linux (NixOS)"]),
+        new("Also", ["Python (FastAPI, Django)", "TypeScript / Node.js"]),
+    ];
+}

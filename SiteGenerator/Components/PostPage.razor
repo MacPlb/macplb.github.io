@@ -1,0 +1,17 @@
+<Layout Title="@($"{Post.Title} · Maciej Pałubicki")" Description="@(Post.Summary != "" ? Post.Summary : Post.Title)" Root="../" IsPosts="true">
+    <article class="post">
+        <header>
+            <p class="meta"><time datetime="@Post.IsoDate">@Post.DisplayDate</time></p>
+            <h1>@Post.Title</h1>
+            <Tags Items="Post.Tags" />
+        </header>
+        <div class="post-body">
+            @((MarkupString)Post.Html)
+        </div>
+        <p class="back"><a href="../posts.html">&larr; All posts</a></p>
+    </article>
+</Layout>
+
+@code {
+    [Parameter, EditorRequired] public Post Post { get; set; } = default!;
+}

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SiteGenerator/SiteGenerator.csproj" />
+  <Project Path="SiteGenerator.Tests/SiteGenerator.Tests.csproj" />
+</Solution>

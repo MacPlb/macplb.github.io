@@ -1,0 +1,17 @@
+<Layout Title="Posts · Maciej Pałubicki" Description="Posts by Maciej Pałubicki about .NET, backend development and NixOS." IsPosts="true">
+    <section>
+        <h1 class="page-title">Posts</h1>
+        @if (Posts.Count == 0)
+        {
+            <p>No posts yet.</p>
+        }
+        else
+        {
+            <PostList Posts="Posts" />
+        }
+    </section>
+</Layout>
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<Post> Posts { get; set; } = [];
+}
