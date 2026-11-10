@@ -1,5 +1,5 @@
 import { escapeHtml, renderMarkdown } from './markdown.js';
-import { lang, t } from './i18n.js';
+import { lang, t, restorePlace } from './i18n.js';
 
 const longDate = new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
@@ -209,4 +209,4 @@ async function renderCollection() {
 const pages = { home: renderHome, posts: renderPostsPage, post: renderPostPage, collection: renderCollection };
 
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
-pages[document.body.dataset.page]?.().catch(console.error);
+pages[document.body.dataset.page]?.().catch(console.error).finally(restorePlace);

@@ -278,12 +278,45 @@ if (lang !== 'en') {
   }
 }
 
-// Switching reloads the page with ?lang=, keeping the rest of the URL (post slug, #section)
+// Translated text has a different height, so the scroll position survives a switch as
+// "this block, this far down" rather than pixels. offsetTop ignores the reveal transforms.
+const blocks = () => [...document.querySelectorAll('main :is(h1, h2, h3, p, li, dt, dd, summary, pre, figure)')];
+const pageTop = element => {
+  let y = 0;
+  for (; element; element = element.offsetParent) y += element.offsetTop;
+  return y;
+};
+
+let place = null;
+try {
+  place = JSON.parse(sessionStorage.getItem('place'));
+  sessionStorage.removeItem('place');
+} catch { /* storage blocked: the page opens at the top */ }
+
+// Called here for the static text and again by app.js once fetched content is in
+export function restorePlace() {
+  const block = place && blocks()[place.index];
+  if (block) scrollTo({ top: pageTop(block) + place.offset, behavior: 'instant' });
+}
+restorePlace();
+
+// Switching reloads the page with ?lang=, keeping the post slug. The #section is dropped,
+// otherwise the browser scrolls to it on load.
 for (const button of document.querySelectorAll('[data-lang]')) {
   button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
   button.addEventListener('click', () => {
+    const all = blocks();
+    const found = all.findIndex(block => pageTop(block) + block.offsetHeight > scrollY);
+    const index = found === -1 ? all.length - 1 : found;
+    if (all[index]) {
+      try {
+        sessionStorage.setItem('place', JSON.stringify({ index, offset: scrollY - pageTop(all[index]) }));
+      } catch { /* storage blocked: the page opens at the top */ }
+    }
+
     const url = new URL(location.href);
     url.searchParams.set('lang', button.dataset.lang);
+    url.hash = '';
     storage.set(button.dataset.lang);
     location.assign(url);
   });
