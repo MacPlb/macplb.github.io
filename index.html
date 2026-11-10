@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maciej Pałubicki · .NET Software Engineer</title>
+    <meta name="description" content="Maciej Pałubicki, .NET software engineer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL.">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Maciej Pałubicki · .NET Software Engineer">
+    <meta property="og:description" content=".NET software engineer from Koszalin, Poland. C#, ASP.NET Core, gRPC, microservices and SQL.">
+    <meta property="og:url" content="https://macplb.github.io/">
+    <link rel="icon" href="static/images/logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600&display=swap">
+    <link rel="stylesheet" href="static/style.css">
+    <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('fx');</script>
+    <script src="static/effects.js" type="module"></script>
+    <script src="static/app.js" type="module"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Maciej Pałubicki",
+        "jobTitle": ".NET Software Engineer",
+        "email": "mailto:macplb@proton.me",
+        "url": "https://macplb.github.io/",
+        "address": { "@type": "PostalAddress", "addressLocality": "Koszalin", "addressCountry": "PL" },
+        "worksFor": { "@type": "Organization", "name": "i4B" },
+        "sameAs": [
+            "https://github.com/MacPlb",
+            "https://pl.linkedin.com/in/maciej-pa%C5%82ubicki-b83456253"
+        ],
+        "knowsAbout": ["C#", ".NET", "ASP.NET Core", "gRPC", "Microservices", "SQL Server", "PostgreSQL", "AWS", "Python", "Django", "Go"]
+    }
+    </script>
+</head>
+<body data-page="home">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+        <nav>
+            <a href="#top" class="logo"><img src="static/images/logo.svg" alt="" width="28" height="28">MacPlb</a>
+            <button class="menu-btn" type="button" popovertarget="menu" aria-label="Menu"><span></span></button>
+            <ul class="nav-links" id="menu" popover>
+                <li><a href="#about">about</a></li>
+                <li><a href="#experience">experience</a></li>
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#stack">stack</a></li>
+            </ul>
+            <a class="pill" href="#contact">Contact <span class="pill-arrow" aria-hidden="true">&rarr;</span></a>
+        </nav>
+        <div class="progress" aria-hidden="true"></div>
+    </header>
+
+    <main id="content">
+        <section class="hero dark" id="top">
+
+            <div class="hero-inner">
+                <p class="eyebrow" data-step style="--i: 0"><span class="ps1">friedrich@nietzsche:~$</span> <span class="typed" style="--n: 6">whoami</span></p>
+                <h1 class="hero-title" aria-label="Maciej Pałubicki">
+                    <span class="line" aria-hidden="true"><span data-split>Maciej</span></span>
+                    <span class="line surname" aria-hidden="true"><span class="glitch" data-text="Pałubicki" data-split>Pałubicki</span><span class="cursor"></span></span>
+                </h1>
+                <p class="hero-lead" data-step style="--i: 5">
+                    .NET software engineer at i4B in Koszalin, building ASP.NET Core APIs and gRPC
+                    microservices on the newest .NET, plus APIs in Python and Go.
+                </p>
+                <ul class="actions" data-step style="--i: 6">
+                    <li><a class="pill" href="mailto:macplb@proton.me">Email me <span class="pill-arrow" aria-hidden="true">&rarr;</span></a></li>
+                    <li><a href="https://github.com/MacPlb">GitHub</a></li>
+                    <li><a href="https://pl.linkedin.com/in/maciej-pa%C5%82ubicki-b83456253">LinkedIn</a></li>
+                </ul>
+            </div>
+
+            <ul class="hero-strip" data-step style="--i: 7">
+                <li>Koszalin <time data-clock>--:--</time></li>
+                <li>Role <span>Software Developer @ i4B</span></li>
+                <li>Status <span>Open to backend roles</span></li>
+                <li>OS <span>NixOS 26.05</span></li>
+                <li class="gopher" aria-hidden="true">
+                    <svg viewBox="0 0 120 110">
+                        <g stroke="#1a1a2e" stroke-width="2.5" stroke-linejoin="round">
+                            <ellipse cx="17" cy="20" rx="9" ry="8" fill="#a77bff"/>
+                            <ellipse cx="103" cy="20" rx="9" ry="8" fill="#a77bff"/>
+                            <path d="M10 110V60C10 26 32 6 60 6s50 20 50 54v50z" fill="#a77bff"/>
+                            <g class="eye"><circle cx="38" cy="40" r="17" fill="#f3f0ea"/><circle class="pupil" cx="38" cy="40" r="5.5" fill="#1a1a2e" stroke="none"/></g>
+                            <g class="eye"><circle cx="82" cy="40" r="17" fill="#f3f0ea"/><circle class="pupil" cx="82" cy="40" r="5.5" fill="#1a1a2e" stroke="none"/></g>
+                            <path d="M54 70h12v12a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z" fill="#fff" stroke-width="1.8"/>
+                            <path d="M60 72v11" stroke-width="1.5"/>
+                            <ellipse cx="60" cy="66" rx="15" ry="10" fill="#f3f0ea"/>
+                            <ellipse cx="60" cy="59" rx="7" ry="4.5" fill="#1a1a2e"/>
+                            <ellipse cx="24" cy="106" rx="11" ry="6" fill="#d6acff"/>
+                            <ellipse cx="96" cy="106" rx="11" ry="6" fill="#d6acff"/>
+                        </g>
+                    </svg>
+                </li>
+            </ul>
+        </section>
+
+        <section id="about" class="paper">
+            <div class="wrap">
+                <p class="label"><span>01</span>About</p>
+                <h2>About <em>me</em></h2>
+                <div class="about-grid">
+                    <div>
+                        <p class="statement">
+                            I started with .NET as a trainee at GlobalLogic in 2022 and joined i4B as an
+                            intern in 2023, where I now work as a software developer. Most of my work is
+                            backend architecture in C#, always on the newest .NET: I have written it
+                            since .NET 6.
+                        </p>
+                        <p>
+                            Besides .NET I write Python, with Django and FastAPI for APIs, and Go, with Gin
+                            for web APIs and Bubble Tea for terminal apps.
+                            I am currently learning Blazor to build front ends without leaving the .NET
+                            stack. Outside work I collect vinyl records and mechanical watches, play retro
+                            games (mostly Nintendo) and make pixel art.
+                        </p>
+                    </div>
+                    <dl class="stats">
+                        <div><dt>requests a day on my gRPC API</dt><dd><span data-count="1">1</span>M+</dd></div>
+                        <div><dt>writing .NET since</dt><dd><span data-count="2022" data-from="2000">2022</span></dd></div>
+                        <div><dt>languages in production: C#, Python, TypeScript</dt><dd><span data-count="3">3</span></dd></div>
+                        <div><dt>NixOS machines from one flake</dt><dd><span data-count="2">2</span></dd></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>gRPC</span><span>Entity Framework Core</span><span>SQL Server</span><span>PostgreSQL</span><span>Python</span><span>Django</span><span>Go</span><span>Gin</span><span>Bubble Tea</span><span>MassTransit</span><span>Docker</span><span>AWS</span><span>NixOS</span>
+                <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>gRPC</span><span>Entity Framework Core</span><span>SQL Server</span><span>PostgreSQL</span><span>Python</span><span>Django</span><span>Go</span><span>Gin</span><span>Bubble Tea</span><span>MassTransit</span><span>Docker</span><span>AWS</span><span>NixOS</span>
+            </div>
+        </div>
+
+        <section id="experience" class="dark">
+            <div class="wrap">
+                <p class="label"><span>02</span>Experience</p>
+                <h2>Where I've <em>worked</em></h2>
+                <div class="jobs">
+                    <details class="job" name="jobs" open>
+                        <summary>
+                            <span class="job-title">Software Developer</span>
+                            <span class="job-co">i4B</span>
+                            <span class="job-date">Oct 2023 – present</span>
+                            <span class="plus" aria-hidden="true"></span>
+                        </summary>
+                        <div class="job-body">
+                            <p class="meta">Koszalin, Poland · Full-time · Hybrid</p>
+                            <p>Backend services in C# and .NET on SQL databases. I am responsible for backend architecture, integrations with other systems and ongoing maintenance.</p>
+                            <ul class="tags"><li>C#</li><li>.NET</li><li>SQL</li><li>AWS</li><li>Python</li><li>Go</li><li>TypeScript</li></ul>
+                        </div>
+                    </details>
+                    <details class="job" name="jobs">
+                        <summary>
+                            <span class="job-title">Intern</span>
+                            <span class="job-co">i4B</span>
+                            <span class="job-date">Jul 2023 – Oct 2023</span>
+                            <span class="plus" aria-hidden="true"></span>
+                        </summary>
+                        <div class="job-body">
+                            <p class="meta">Koszalin, Poland · On-site</p>
+                            <p>Backend development and SQL database work in C# and .NET.</p>
+                            <ul class="tags"><li>C#</li><li>.NET</li><li>SQL</li></ul>
+                        </div>
+                    </details>
+                    <details class="job" name="jobs">
+                        <summary>
+                            <span class="job-title">Trainee .NET Developer</span>
+                            <span class="job-co">GlobalLogic</span>
+                            <span class="job-date">Jul 2022 – Sep 2022</span>
+                            <span class="plus" aria-hidden="true"></span>
+                        </summary>
+                        <div class="job-body">
+                            <p class="meta">Koszalin, Poland · Internship</p>
+                            <p>Backend projects in C# and .NET, using Git, SQL and Jira day to day.</p>
+                            <ul class="tags"><li>C#</li><li>.NET</li><li>SQL</li><li>Git</li><li>Jira</li></ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="paper">
+            <div class="wrap">
+                <p class="label"><span>03</span>Projects</p>
+                <div class="section-head">
+                    <h2>Things I've <em>built</em></h2>
+                    <a class="pill dark-pill" href="https://github.com/MacPlb?tab=repositories">All repositories <span class="pill-arrow" aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class="projects">
+                    <article class="project wide">
+                        <ul class="labels"><li>Work</li><li>C#</li><li>.NET</li><li>gRPC</li><li>PostgreSQL</li><li>Docker</li></ul>
+                        <h3>gRPC API in .NET</h3>
+                        <p>gRPC service for communication between microservices, handling over 1 million requests per day.</p>
+                    </article>
+                    <article class="project">
+                        <ul class="labels"><li>Work</li><li>Python</li><li>AWS Glue</li><li>Lambda</li><li>S3</li></ul>
+                        <h3>AWS Glue ETL pipeline</h3>
+                        <p>Pipeline that processes large datasets with AWS Glue jobs, with Lambda functions automating the transform and load steps.</p>
+                    </article>
+                    <a class="project feature" href="https://github.com/MacPlb/Vertical-Tabs">
+                        <div class="shot"><img src="static/images/vertical-tabs.png" width="394" height="385" loading="lazy" alt="Vertical-Tabs panel in a JetBrains IDE listing open files grouped under their .NET projects"></div>
+                        <ul class="labels"><li>Open source</li><li>Java</li><li>JetBrains plugin</li></ul>
+                        <h3>Vertical-Tabs</h3>
+                        <p>Open-files navigator for JetBrains IDEs. It docks on the left, groups files by IDE module or .NET project and can replace the editor tab bar.</p>
+                        <span class="go">View on GitHub <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <article class="project">
+                        <ul class="labels"><li>Python</li><li>Django</li><li>PostgreSQL</li></ul>
+                        <h3>Django blog</h3>
+                        <p>Blog application with user accounts, rich text editing and comments.</p>
+                    </article>
+                    <a class="project" href="https://github.com/MacPlb/BookStoreApi">
+                        <ul class="labels"><li>Open source</li><li>C#</li><li>.NET</li><li>PostgreSQL</li><li>Docker</li></ul>
+                        <h3>BookStoreApi</h3>
+                        <p>.NET Web API for managing a book store's authors, backed by PostgreSQL and run in Docker.</p>
+                        <span class="go">View on GitHub <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a class="project" href="https://github.com/MacPlb/ArduinoThermometer">
+                        <ul class="labels"><li>Open source</li><li>C#</li><li>.NET MAUI</li><li>Arduino</li></ul>
+                        <h3>ArduinoThermometer</h3>
+                        <p>.NET MAUI app that connects to an Arduino thermometer and shows its readings.</p>
+                        <span class="go">View on GitHub <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a class="project feature" href="https://github.com/MacPlb/nix-os-configuration">
+                        <div class="shot"><img src="static/images/nixos-desktop.jpg" width="1280" height="720" loading="lazy" alt="niri desktop with fastfetch, Neovim editing the kitty colour palette and the Noctalia app launcher"></div>
+                        <ul class="labels"><li>Open source</li><li>Nix</li><li>flake-parts</li><li>niri</li></ul>
+                        <h3>nix-os-configuration</h3>
+                        <p>My NixOS systems and dotfiles: one flake builds the desktop and the laptop, themed with the palette this site uses.</p>
+                        <span class="go">View on GitHub <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack" class="dark">
+            <div class="wrap">
+                <p class="label"><span>04</span>Stack</p>
+                <h2>What I work <em>with</em></h2>
+                <div class="stack-grid">
+                    <div class="stack-cards">
+                        <article class="stack-card" data-layer="all">
+                            <h3>The whole stack</h3>
+                            <p>Everything I work with, from the operating system up to the tests. Scroll on and each layer lights up.</p>
+                        </article>
+                        <article class="stack-card" data-layer="infra">
+                            <h3>Linux &amp; cloud</h3>
+                            <p>Where the code runs: containers, cloud services and the pipelines that ship them.</p>
+                            <p class="tech">AWS (EC2, S3, Lambda, RDS, DynamoDB, Glue) · Azure · Docker · Terraform · CI/CD · Git · Linux</p>
+                        </article>
+                        <article class="stack-card" data-layer="data">
+                            <h3>Data</h3>
+                            <p>Relational databases first: schema design and query optimisation on SQL Server and PostgreSQL, with Redis alongside.</p>
+                            <p class="tech">SQL Server · T-SQL · PostgreSQL · Redis · Entity Framework Core · Dapper</p>
+                        </article>
+                        <article class="stack-card" data-layer="runtime">
+                            <h3>Languages</h3>
+                            <p>C# on the newest .NET day to day, as I have since .NET 6. Python and Go alongside, and TypeScript when a job needs it.</p>
+                            <p class="tech">C# · .NET 6 and newer · LINQ · async/await · dependency injection · background services · Python (Django, FastAPI) · Go (Gin, Bubble Tea) · TypeScript / Node.js</p>
+                        </article>
+                        <article class="stack-card" data-layer="web">
+                            <h3>ASP.NET Core</h3>
+                            <p>HTTP APIs and real-time endpoints, with authentication and authorization built in.</p>
+                            <p class="tech">Web API · MVC · minimal APIs · SignalR · ASP.NET Core Identity · JWT · OAuth 2.0 / OpenID Connect · Blazor (learning)</p>
+                        </article>
+                        <article class="stack-card" data-layer="services">
+                            <h3>Services</h3>
+                            <p>Microservices that talk to each other over gRPC and message queues.</p>
+                            <p class="tech">gRPC · MassTransit · message queues · event-driven integration · microservices</p>
+                        </article>
+                        <article class="stack-card" data-layer="architecture">
+                            <h3>Architecture</h3>
+                            <p>Structure that keeps a codebase easy to change as it grows.</p>
+                            <p class="tech">Clean Architecture · DDD · CQRS / MediatR · SOLID · design patterns</p>
+                        </article>
+                        <article class="stack-card" data-layer="quality">
+                            <h3>Tests &amp; telemetry</h3>
+                            <p>Tests at every level, and enough telemetry to know what production is doing.</p>
+                            <p class="tech">xUnit · NUnit · Moq · NSubstitute · WebApplicationFactory · Testcontainers · architecture tests · BenchmarkDotNet · profiling · TDD · Serilog · OpenTelemetry · health checks · Polly</p>
+                        </article>
+                    </div>
+                    <div class="stack-sticky">
+                        <svg class="stack-diagram" viewBox="0 0 470 500" aria-hidden="true">
+                          <g class="layer" data-layer="infra">
+                            <polygon class="side" points="40,406 170,456 170,468 40,418"/>
+                            <polygon class="side dark" points="170,456 300,406 300,418 170,468"/>
+                            <polygon class="top" points="170,356 300,406 170,456 40,406"/>
+                            <polygon class="inner" points="170,378.5 241.5,406 170,433.5 98.5,406"/>
+                            <path class="tick" d="M306 406h22"/>
+                            <text x="334" y="410">linux &amp; cloud</text>
+                          </g>
+                          <g class="layer" data-layer="data">
+                            <polygon class="side" points="40,354 170,404 170,416 40,366"/>
+                            <polygon class="side dark" points="170,404 300,354 300,366 170,416"/>
+                            <polygon class="top" points="170,304 300,354 170,404 40,354"/>
+                            <polygon class="inner" points="170,326.5 241.5,354 170,381.5 98.5,354"/>
+                            <path class="tick" d="M306 354h22"/>
+                            <text x="334" y="358">data</text>
+                          </g>
+                          <g class="layer" data-layer="runtime">
+                            <polygon class="side" points="40,302 170,352 170,364 40,314"/>
+                            <polygon class="side dark" points="170,352 300,302 300,314 170,364"/>
+                            <polygon class="top" points="170,252 300,302 170,352 40,302"/>
+                            <polygon class="inner" points="170,274.5 241.5,302 170,329.5 98.5,302"/>
+                            <path class="tick" d="M306 302h22"/>
+                            <text x="334" y="306">languages</text>
+                          </g>
+                          <g class="layer" data-layer="web">
+                            <polygon class="side" points="40,250 170,300 170,312 40,262"/>
+                            <polygon class="side dark" points="170,300 300,250 300,262 170,312"/>
+                            <polygon class="top" points="170,200 300,250 170,300 40,250"/>
+                            <polygon class="inner" points="170,222.5 241.5,250 170,277.5 98.5,250"/>
+                            <path class="tick" d="M306 250h22"/>
+                            <text x="334" y="254">asp.net core</text>
+                          </g>
+                          <g class="layer" data-layer="services">
+                            <polygon class="side" points="40,198 170,248 170,260 40,210"/>
+                            <polygon class="side dark" points="170,248 300,198 300,210 170,260"/>
+                            <polygon class="top" points="170,148 300,198 170,248 40,198"/>
+                            <polygon class="inner" points="170,170.5 241.5,198 170,225.5 98.5,198"/>
+                            <path class="tick" d="M306 198h22"/>
+                            <text x="334" y="202">services</text>
+                          </g>
+                          <g class="layer" data-layer="architecture">
+                            <polygon class="side" points="40,146 170,196 170,208 40,158"/>
+                            <polygon class="side dark" points="170,196 300,146 300,158 170,208"/>
+                            <polygon class="top" points="170,96 300,146 170,196 40,146"/>
+                            <polygon class="inner" points="170,118.5 241.5,146 170,173.5 98.5,146"/>
+                            <path class="tick" d="M306 146h22"/>
+                            <text x="334" y="150">architecture</text>
+                          </g>
+                          <g class="layer" data-layer="quality">
+                            <polygon class="side" points="40,94 170,144 170,156 40,106"/>
+                            <polygon class="side dark" points="170,144 300,94 300,106 170,156"/>
+                            <polygon class="top" points="170,44 300,94 170,144 40,94"/>
+                            <polygon class="inner" points="170,66.5 241.5,94 170,121.5 98.5,94"/>
+                            <path class="tick" d="M306 94h22"/>
+                            <text x="334" y="98">tests &amp; telemetry</text>
+                          </g>
+                          <path class="bus" d="M170 10V498"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="setup" class="dark">
+            <div class="wrap">
+                <p class="label"><span>05</span>Setup</p>
+                <h2>Runs on <em>NixOS</em></h2>
+                <div class="setup-grid">
+                    <div>
+                        <p>
+                            I run NixOS on two machines, nietzsche (desktop) and dostoyevsky (laptop), both
+                            built from one flake: the niri Wayland compositor with the Noctalia shell, kitty,
+                            LazyVim and the rest of my tools.
+                        </p>
+                        <p>
+                            Modules are flake-parts files imported automatically, dotfiles are linked into
+                            place without Home Manager, and pinned inputs mean the same config always builds
+                            the same system. One colour palette themes the terminal, GTK, Qt, Neovim and this
+                            site.
+                        </p>
+                        <p><a class="pill" href="https://github.com/MacPlb/nix-os-configuration">See the config <span class="pill-arrow" aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <div class="terminal">
+                        <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>friedrich@nietzsche: ~</span></div>
+                        <div class="term-body">
+                            <p class="cmd"><span class="ps1">friedrich@nietzsche:~$</span> fastfetch</p>
+                            <img src="static/images/nixos-fastfetch.jpg" width="1200" height="515" loading="lazy"
+                                 alt="fastfetch output in kitty: NixOS 26.05 with the niri compositor on an AMD Ryzen 5 7500F and Radeon RX 7700 XT">
+                            <p class="cmd" aria-hidden="true"><span class="ps1">friedrich@nietzsche:~$</span> <span class="cursor"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="posts" class="dark" hidden>
+            <div class="wrap">
+                <p class="label"><span>//</span>Writing</p>
+                <h2>Latest <em>posts</em></h2>
+                <ul class="post-list" id="latest-posts"></ul>
+                <p class="more"><a href="posts.html">All posts &rarr;</a></p>
+            </div>
+        </section>
+
+        <section id="contact" class="dark contact">
+            <div class="wrap">
+                <p class="label"><span>06</span>Contact</p>
+                <div class="contact-grid">
+                    <div>
+                        <h2 class="huge">Hiring a <em>developer</em>?</h2>
+                        <p class="contact-lead">Email is the quickest way to reach me.</p>
+                        <p><a class="pill big" href="mailto:macplb@proton.me">macplb@proton.me <span class="pill-arrow" aria-hidden="true">&rarr;</span></a></p>
+                    </div>
+                    <div class="terminal">
+                        <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>contact.txt</span></div>
+                        <div class="term-body">
+                            <p class="cmd"><span class="ps1">friedrich@nietzsche:~$</span> cat contact.txt</p>
+                            <dl class="facts">
+                                <dt>email</dt>
+                                <dd><a href="mailto:macplb@proton.me">macplb@proton.me</a></dd>
+                                <dt>github</dt>
+                                <dd><a href="https://github.com/MacPlb">github.com/MacPlb</a></dd>
+                                <dt>linkedin</dt>
+                                <dd><a href="https://pl.linkedin.com/in/maciej-pa%C5%82ubicki-b83456253">in/maciej-pałubicki</a></dd>
+                                <dt>location</dt>
+                                <dd>Koszalin, Poland · open to remote</dd>
+                            </dl>
+                            <p class="cmd" aria-hidden="true"><span class="ps1">friedrich@nietzsche:~$</span> <span class="cursor"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p>&copy; <span data-year>2026</span> Maciej Pałubicki · Go gopher design by Renée French, <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY&nbsp;4.0</a></p>
+            <p><a href="https://github.com/MacPlb/macplb.github.io">source</a> · <a href="#top">back to top &uarr;</a></p>
+        </div>
+    </footer>
+</body>
+</html>
