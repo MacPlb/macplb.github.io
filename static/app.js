@@ -1,6 +1,7 @@
 import { escapeHtml, renderMarkdown } from './markdown.js';
+import { lang, t } from './i18n.js';
 
-const longDate = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const longDate = new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
 async function fetchText(path) {
   const response = await fetch(path);
@@ -86,15 +87,15 @@ function addCopyButtons(root) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'copy';
-    button.textContent = 'Copy';
+    button.textContent = t('js.copy', 'Copy');
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(code.textContent);
-        button.textContent = 'Copied';
+        button.textContent = t('js.copied', 'Copied');
       } catch {
-        button.textContent = 'Failed';
+        button.textContent = t('js.failed', 'Failed');
       }
-      setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+      setTimeout(() => { button.textContent = t('js.copy', 'Copy'); }, 2000);
     });
     code.parentElement.append(button);
   }
@@ -114,18 +115,19 @@ async function renderPostsPage() {
     if (posts.length) document.querySelector('#post-list').innerHTML = postListHtml(posts);
     else status.hidden = false;
   } catch (error) {
-    status.textContent = 'Could not load posts.';
+    status.textContent = t('js.postsError', 'Could not load posts.');
     status.hidden = false;
     throw error;
   }
 }
 
 function showMissingPost(container) {
-  document.title = 'Post not found · Maciej Pałubicki';
+  const title = t('js.missing', 'Post not found');
+  document.title = `${title} · Maciej Pałubicki`;
   container.innerHTML = `
-    <header><h1>Post not found</h1></header>
-    <p>The post you are looking for does not exist.</p>
-    <p class="back"><a href="posts.html">&larr; All posts</a></p>`;
+    <header><h1>${title}</h1></header>
+    <p>${t('js.missingText', 'The post you are looking for does not exist.')}</p>
+    <p class="back"><a href="posts.html">${t('js.allPosts', '&larr; All posts')}</a></p>`;
 }
 
 async function renderPostPage() {
@@ -146,12 +148,12 @@ async function renderPostPage() {
 
     container.innerHTML = `
       <header>
-        <p class="meta"><time datetime="${post.date}">${post.displayDate}</time> · ${post.readingTime} min read</p>
+        <p class="meta"><time datetime="${post.date}">${post.displayDate}</time> · ${post.readingTime} ${t('js.minRead', 'min read')}</p>
         <h1>${escapeHtml(post.title)}</h1>
         ${tagsHtml(post.tags)}
       </header>
       <div class="post-body">${post.html}</div>
-      <p class="back"><a href="posts.html">&larr; All posts</a></p>`;
+      <p class="back"><a href="posts.html">${t('js.allPosts', '&larr; All posts')}</a></p>`;
     addCopyButtons(container);
   } catch (error) {
     showMissingPost(container);
@@ -177,7 +179,7 @@ async function renderCollection() {
       .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
 
     if (!sections.length) {
-      container.innerHTML = '<p>Photos coming soon.</p>';
+      container.innerHTML = `<p>${t('js.photosSoon', 'Photos coming soon.')}</p>`;
       return;
     }
 
@@ -199,7 +201,7 @@ async function renderCollection() {
         </ul>
       </section>`).join('');
   } catch (error) {
-    container.innerHTML = '<p>Could not load the collection.</p>';
+    container.innerHTML = `<p>${t('js.collectionError', 'Could not load the collection.')}</p>`;
     throw error;
   }
 }

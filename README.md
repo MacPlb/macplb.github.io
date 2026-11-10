@@ -41,6 +41,17 @@ and the file name becomes the caption. Photos are published as-is, so resize the
 1600px first. The page is not linked from the home page yet; add a link in the About section
 once it has photos.
 
+## Languages
+
+English is written in the HTML and is the default. Polish and German live in
+`static/i18n.js`: every translated element has a `data-i18n="key"` attribute (or
+`data-i18n-alt` / `data-i18n-label` for `alt` and `aria-label`), and the same key holds the
+`pl` and `de` text. When you change English text, update both translations too; a missing key
+simply shows the English. Text built in JavaScript uses `t('key', 'English text')`.
+
+The EN · PL · DE switcher remembers the choice. A link can also pick the language, for
+example <https://macplb.github.io/?lang=pl>.
+
 ## Deploy
 
-Pushing to `master` copies the site to GitHub Pages (`.github/workflows/pages.yml`).
+Pushing to `master` publishes the site to GitHub Pages (`.github/workflows/pages.yml`).

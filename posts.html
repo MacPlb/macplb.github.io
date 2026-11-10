@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#1a1a2e">
-    <title>Posts · Maciej Pałubicki</title>
+    <title data-i18n="title.posts">Posts · Maciej Pałubicki</title>
     <meta name="description" content="Posts by Maciej Pałubicki about .NET, backend development and NixOS.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Posts · Maciej Pałubicki">
@@ -15,32 +15,34 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600&display=swap">
     <link rel="stylesheet" href="static/style.css">
     <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('fx');</script>
+    <script src="static/i18n.js" type="module"></script>
     <script src="static/effects.js" type="module"></script>
     <script src="static/app.js" type="module"></script>
 </head>
 <body data-page="posts">
-    <a class="skip-link" href="#content">Skip to content</a>
+    <a class="skip-link" href="#content" data-i18n="skip">Skip to content</a>
 
     <header class="site-header scrolled">
         <nav>
             <a href="index.html" class="logo"><img src="static/images/logo.svg" alt="" width="28" height="28">MacPlb</a>
-            <button class="menu-btn" type="button" popovertarget="menu" aria-label="Menu"><span></span></button>
+            <button class="menu-btn" type="button" popovertarget="menu" aria-label="Menu" data-i18n-label="menu"><span></span></button>
             <ul class="nav-links" id="menu" popover>
-                <li><a href="index.html#about">about</a></li>
-                <li><a href="index.html#experience">experience</a></li>
-                <li><a href="index.html#projects">projects</a></li>
-                <li><a href="index.html#stack">stack</a></li>
+                <li><a href="index.html#about" data-i18n="nav.about">about</a></li>
+                <li><a href="index.html#experience" data-i18n="nav.experience">experience</a></li>
+                <li><a href="index.html#projects" data-i18n="nav.projects">projects</a></li>
+                <li><a href="index.html#stack" data-i18n="nav.stack">stack</a></li>
+                <li class="lang"><span role="group" aria-label="Language" data-i18n-label="language"><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="pl" lang="pl">PL</button><button type="button" data-lang="de" lang="de">DE</button></span></li>
             </ul>
-            <a class="pill" href="index.html#contact">Contact <span class="pill-arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="pill" href="index.html#contact"><span data-i18n="nav.contact">Contact</span> <span class="pill-arrow" aria-hidden="true">&rarr;</span></a>
         </nav>
         <div class="progress" aria-hidden="true"></div>
     </header>
 
     <main id="content" class="page">
         <div class="wrap">
-            <p class="label"><span>//</span>Writing</p>
-            <h1 class="page-title">Posts</h1>
-            <p id="posts-status" hidden>No posts yet.</p>
+            <p class="label" data-i18n="posts.label"><span>//</span>Writing</p>
+            <h1 class="page-title" data-i18n="posts.title">Posts</h1>
+            <p id="posts-status" hidden data-i18n="posts.none">No posts yet.</p>
             <ul class="post-list" id="post-list"></ul>
         </div>
     </main>
@@ -48,7 +50,7 @@
     <footer>
         <div class="wrap">
             <p>&copy; <span data-year>2026</span> Maciej Pałubicki</p>
-            <p><a href="https://github.com/MacPlb/macplb.github.io">source</a> · <a href="index.html">home</a></p>
+            <p><a href="https://github.com/MacPlb/macplb.github.io" data-i18n="footer.source">source</a> · <a href="index.html" data-i18n="footer.home">home</a></p>
         </div>
     </footer>
 </body>

@@ -214,6 +214,7 @@ nav {
 }
 
 .nav-links {
+    align-items: center;
     position: static; /* undo the browser's popover styles; it's only a popover on phones */
     display: flex;
     gap: 1.75rem;
@@ -231,6 +232,35 @@ nav {
 
 .nav-links a {
     color: rgba(236, 236, 241, .7);
+}
+
+/* Language switcher: last item of the nav row, its own row in the phone menu */
+.lang {
+    padding-left: 1.25rem;
+    border-left: 1px solid rgba(255, 255, 255, .15);
+}
+
+.lang span {
+    display: flex;
+    gap: .15rem;
+}
+
+.lang button {
+    padding: .3rem .45rem;
+    color: rgba(236, 236, 241, .55);
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.lang button:hover {
+    color: var(--text);
+}
+
+.lang button[aria-pressed="true"] {
+    color: var(--accent);
 }
 
 .nav-links a::before {
@@ -276,7 +306,10 @@ nav {
         --nav-h: 64px;
         --r: 18px;
     }
+}
 
+/* Below 960px the nav row (with the language switcher) no longer fits: use the menu */
+@media (max-width: 960px) {
     nav {
         gap: .75rem;
     }
@@ -293,6 +326,7 @@ nav {
         position: fixed;
         inset: var(--nav-h) 0 auto;
         flex-direction: column;
+        align-items: stretch;
         gap: 0;
         padding: .25rem var(--m) 1rem;
         background: var(--ink-2);
@@ -307,8 +341,14 @@ nav {
         border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
-    .nav-links:popover-open li:last-child a {
-        border-bottom: 0;
+    .nav-links:popover-open .lang {
+        padding: .5rem 0 0;
+        border: 0;
+    }
+
+    .nav-links:popover-open .lang button {
+        min-width: 44px;
+        min-height: 44px;
     }
 
     .nav-links:popover-open a::before {
@@ -504,7 +544,7 @@ h2 em {
 
 /* Terminal cursor instead of a full stop */
 h2::after {
-    content: "_";
+    content: "\2060_"; /* word joiner: the cursor never wraps onto its own line */
     margin-left: .04em;
     color: var(--acc);
     font-family: var(--f-mono);
@@ -632,6 +672,7 @@ h2::after {
 
 .hero-lead {
     max-width: 44rem;
+    text-wrap: balance;
     margin: 2.25rem auto 0;
     color: var(--fg-2);
     font-size: var(--t-lead);
